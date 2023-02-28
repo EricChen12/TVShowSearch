@@ -7,13 +7,17 @@ form.addEventListener("submit", async function (e) {
     const searchKeywords = form.elements.query.value;
     const config = { params: { q: searchKeywords } }
     const res = await axios.get(`https://api.tvmaze.com/search/shows?q=`, config);
-    createImg(res.data);
+    if (res.data.length === 0) {
+        createMsg("No related TV shows, Please enter other keywords!");
+    } else {
+        createImg(res.data);
+    }
     form.elements.query.value = "";
-
 })
 
 const createImg = (shows) => {
     removeImages();
+    removeMsg();
     for (let result of shows) {
         if (result.show.image) {
             const img = document.createElement("img");
@@ -24,21 +28,22 @@ const createImg = (shows) => {
     }
 }
 
-function removeImages() {
-    var images = document.getElementsByTagName('img');
-    for (var i = 0; i < images.length; i++) {
-        images[i].parentNode.removeChild(images[i]);
-    }
+function createMsg(message) {
+    removeImages();
+    const msg = document.createElement("p");
+    msg.innerText = message;
+    imgContainer.append(msg);
 }
 
 function removeImages() {
-    for (let i = 0; i < lastSearchImages.length; i++) {
-        const img = lastSearchImages[i];
-        img.parentNode.removeChild(img);
-    }
+    lastSearchImages.forEach(img => img.remove());
     lastSearchImages = [];
 }
 
-// const searchBtn = document.querySelector("#searchBtn")
-// searchBtn.addEventListener("click", removeImages)
+function removeMsg() {
+    const msg = imgContainer.querySelector("p");
+    if (msg) {
+        msg.remove();
+    }
+}
 
