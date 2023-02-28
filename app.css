@@ -1,0 +1,81 @@
+body {
+    background-color: rgb(0, 0, 0);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+main {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+section {
+    padding: 5rem;
+}
+
+form {
+    width: 100%;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+}
+
+#searchBar {
+    color: white;
+    font-size: large;
+    background-color: rgb(27, 27, 27);
+    border: none;
+    width: 50rem;
+    height: 3rem;
+}
+
+#searchBar::placeholder {
+    color: white;
+    font-size: large;
+    padding-left: 1rem;
+}
+
+#searchBtn {
+    padding: 0 1rem;
+}
+
+#searchBtn:hover {
+    background-color: rgb(63, 63, 63);
+    cursor: pointer;
+}
+
+#searchBtn:hover i {
+    color: rgb(155, 155, 155);
+}
+
+#searchBtn i {
+    font-size: 1.5rem;
+}
+
+
+#imgContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 15px;
+}
+
+img {
+    border-radius: 1rem;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+footer p {
+    color: white;
+}
